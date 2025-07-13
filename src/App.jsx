@@ -6,7 +6,7 @@ const Card = ({ title, rating=0, isCool=false, actors=[] }) => {
          * because inline styles have preferences over all the other CSS styles
          */
         <div className="card" style={{border: '1px solid #4b5362'}}>
-            <h2>{title} has {rating} rating.</h2>
+            <h2>{title}</h2>
         </div>
     )
 }
