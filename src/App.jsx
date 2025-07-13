@@ -71,11 +71,16 @@ const Card = ({ title, rating=0, isCool=false, actors=[] }) => {
 
 const App = () => {
     return (
-        <div className="card-container">
-            {/* Passing props to component title, rating, isCool etc. */}
-            <Card title="Star wars" rating={5} isCool={true} actors={[{ name:"Actor-A" }]} />
-            <Card title="Avatar" />
-            <Card title="The lion King" />
+        <div>
+            <h1 className="mb-10 text-3xl font-bold text-white">
+                Welcome to the app!
+            </h1>
+            <div className="card-container">
+                {/* Passing props to component title, rating, isCool etc. */}
+                <Card title="Star wars" rating={5} isCool={true} actors={[{name: "Actor-A"}]}/>
+                <Card title="Avatar"/>
+                <Card title="The lion King"/>
+            </div>
         </div>
     )
 }
