@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -59,7 +59,7 @@ const Card = ({ title, rating=0, isCool=false, actors=[] }) => {
                     setHasLiked(!hasLiked);
                     setCount((prevState) =>  prevState + 1);
                 }
-            }
+                }
                 type="button"
             >
                 {/* conditional rendering; a simple case: render when count has value*/}
