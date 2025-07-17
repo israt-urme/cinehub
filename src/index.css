@@ -42,6 +42,10 @@
   header {
     @apply sm:mt-10 mt-5;
   }
+
+  header img {
+    @apply w-full max-w-lg h-auto object-contain mx-auto drop-shadow-md;
+  }
 }
 
 @layer components {
@@ -51,6 +55,14 @@
 
   .wrapper {
     @apply px-5 py-12 xs:p-10 max-w-7xl mx-auto flex flex-col relative z-10;
+  }
+
+  .search {
+    @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto flex justify-between items-center;
+
+    & input {
+      @apply w-full bg-transparent py-2 sm:pr-10 sm:pl-10 text-base text-gray-200 placeholder-light-200 outline-hidden;
+    }
   }
 }
 

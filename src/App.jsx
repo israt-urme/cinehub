@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import heroImage from './assets/hero.jpg';
+import Search from "./components/Search.jsx";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -88,13 +90,17 @@ const App = () => {
 */
 
 const App = () => {
+    const [searchTerm, setSearchTerm] = useState("");
+
     return (
         <main>
             <div className="pattern"></div>
             <div className="wrapper">
                 <header>
+                    <img src={heroImage} alt="Hero Banner" />
                     <h1>Find <span className="text-gradient">Movies</span> You'll Enjoy Without The Hassle</h1>
                 </header>
+                <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
         </main>
     )
