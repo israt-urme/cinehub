@@ -73,3 +73,7 @@
 @utility text-gradient {
   @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
 }
+
+@utility spinner {
+  @apply w-10 h-10 border-2 border-white border-t-purple-500 rounded-full animate-spin;
+}

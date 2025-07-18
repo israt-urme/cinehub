@@ -138,7 +138,7 @@ const App = () => {
             console.log(`Error fetching movies ${e}`);
             setErrorMessage('Error fetching movies. Please try again later.');
         } finally {
-            setIsLoading(false);
+            setIsLoading(true);
         }
     }
 
@@ -159,7 +159,7 @@ const App = () => {
                 <section className="all-movies">
                     <h2>All Movies</h2>
                     {isLoading ? (
-                        <p className="text-white">Loading...</p>
+                        <div className="spinner"></div>
                     ) : errorMessage ? (
                         <p className="text-red-500">{errorMessage}</p>
                         ) : (
@@ -177,7 +177,7 @@ const App = () => {
                                   </li>
                               ))}
                           </ul>
-                    )
+                        )
                     }
                 </section>
             </div>
