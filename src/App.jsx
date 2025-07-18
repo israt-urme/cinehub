@@ -89,8 +89,53 @@ const App = () => {
 }
 */
 
+/** API: Application Programming Interface
+ * A set of rules that allows one software application (eg a react app) to
+ * talk to another (server or database) that set somewhere else
+ */
+
+const API_BASE_URL = "https://api.themoviedb.org/3"
+
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+const API_OPTIONS = {
+    method: "GET",
+    headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${API_KEY}`, // verifies who's trying to make a request
+    }
+}
+
 const App = () => {
     const [searchTerm, setSearchTerm] = useState("");
+    // to view error message in app browser
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const fetchMovies = async () => {
+        try {
+            const endpoint = `${API_BASE_URL}/discover/movie`;
+            // fetch allows to make api request to get data
+            const response = await fetch(endpoint, API_OPTIONS);
+
+            if(!response.ok) {
+                throw new Error("Failed to fetch movie");
+            }
+            // parse this response to a json object
+            const data = await response.json();
+
+            if(data.success === false) {
+                setErrorMessage(data.status_message || 'Failed to fetch movie');
+            }
+            console.log(data);
+        } catch (e) {
+            console.log(`Error fetching movies ${e}`);
+            setErrorMessage('Error fetching movies. Please try again later.');
+        }
+    }
+
+    useEffect(() => {
+        fetchMovies();
+    }, [])
 
     return (
         <main>
@@ -99,8 +144,13 @@ const App = () => {
                 <header>
                     <img src={heroImage} alt="Hero Banner" />
                     <h1>Find <span className="text-gradient">Movies</span> You'll Enjoy Without The Hassle</h1>
+                    <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 </header>
-                <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
+                <section className="all-movies">
+                    <h2>All Movies</h2>
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                </section>
             </div>
         </main>
     )
