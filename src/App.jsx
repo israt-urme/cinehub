@@ -110,8 +110,13 @@ const App = () => {
     const [searchTerm, setSearchTerm] = useState("");
     // to view error message in app browser
     const [errorMessage, setErrorMessage] = useState("");
+    const [movieList, setMovieList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchMovies = async () => {
+        setIsLoading(true);
+        setErrorMessage("");
+
         try {
             const endpoint = `${API_BASE_URL}/discover/movie`;
             // fetch allows to make api request to get data
@@ -124,12 +129,16 @@ const App = () => {
             const data = await response.json();
 
             if(data.success === false) {
-                setErrorMessage(data.status_message || 'Failed to fetch movie');
+                setErrorMessage(data.statusText || 'Failed to fetch movie');
+                setMovieList([]);
+                return;
             }
-            console.log(data);
+            setMovieList(data.results || []);
         } catch (e) {
             console.log(`Error fetching movies ${e}`);
             setErrorMessage('Error fetching movies. Please try again later.');
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -149,7 +158,27 @@ const App = () => {
 
                 <section className="all-movies">
                     <h2>All Movies</h2>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
+                    {isLoading ? (
+                        <p className="text-white">Loading...</p>
+                    ) : errorMessage ? (
+                        <p className="text-red-500">{errorMessage}</p>
+                        ) : (
+                          <ul>
+                              {/** Mapping a list of array
+                               array.map((item) => { return item; }
+                               or
+                               array.map((item) => ( renders directly in the brackets without return )
+                               also don't forget to add unique key; best practice is to pass id as key
+                               */}
+                              {movieList.map((movie) => (
+                                  <li key={movie.id} className="text-white">
+                                      <h2>{movie.title}</h2>
+                                      <p>{movie.overview}</p>
+                                  </li>
+                              ))}
+                          </ul>
+                    )
+                    }
                 </section>
             </div>
         </main>
