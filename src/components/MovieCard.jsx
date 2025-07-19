@@ -9,7 +9,7 @@ const MovieCard = ({ movie:
             <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : '/no-movie.png'} alt={title} />
             <div>
                 <h3>{title}</h3>
-                <div></div>
+                <div>{original_language}</div>
             </div>
         </div>
     )
