@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import heroImage from './assets/hero.jpg';
 import Search from "./components/Search.jsx";
+import MovieCard from "./components/MovieCard.jsx";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -129,7 +130,7 @@ const App = () => {
             const data = await response.json();
 
             if(data.success === false) {
-                setErrorMessage(data.statusText || 'Failed to fetch movie');
+                setErrorMessage(data.statusMessage || 'Failed to fetch movie');
                 setMovieList([]);
                 return;
             }
@@ -138,7 +139,7 @@ const App = () => {
             console.log(`Error fetching movies ${e}`);
             setErrorMessage('Error fetching movies. Please try again later.');
         } finally {
-            setIsLoading(true);
+            setIsLoading(false);
         }
     }
 
@@ -152,7 +153,7 @@ const App = () => {
             <div className="wrapper">
                 <header>
                     <img src={heroImage} alt="Hero Banner" />
-                    <h1>Find <span className="text-gradient">Movies</span> You'll Enjoy Without The Hassle</h1>
+                    <h3 className="text-white text-3xl text-center">Find <span className="text-gradient">Movies</span> You'll Enjoy <br/> Without The Hassle</h3>
                     <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 </header>
 
@@ -171,10 +172,7 @@ const App = () => {
                                also don't forget to add unique key; best practice is to pass id as key
                                */}
                               {movieList.map((movie) => (
-                                  <li key={movie.id} className="text-white">
-                                      <h2>{movie.title}</h2>
-                                      <p>{movie.overview}</p>
-                                  </li>
+                                  <MovieCard key={movie.id} movie={movie} />
                               ))}
                           </ul>
                         )
