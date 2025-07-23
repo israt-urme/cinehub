@@ -79,6 +79,22 @@
     & img {
       @apply rounded-lg h-auto w-full;
     }
+
+    & h3 {
+      @apply text-white font-bold text-base line-clamp-1;
+    }
+
+    & .content {
+      @apply mt-2 flex flex-row items-center flex-wrap gap-2;
+    }
+
+    & .rating {
+      @apply flex flex-row items-center gap-1;
+    }
+
+    & .rating p {
+      @apply font-bold text-base text-white;
+    }
   }
 }
 
