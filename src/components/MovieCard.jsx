@@ -1,5 +1,16 @@
 import React from "react";
 
+/** A presentational component:
+ * it doesn't handle any logic, accepting some props that pass into it and rendering them
+ * @param title
+ * @param vote_average
+ * @param poster_path
+ * @param release_date
+ * @param original_language
+ * @returns {Element}
+ * @constructor
+ */
+
 //destructure movie props using :
 const MovieCard = ({ movie:
     { title, vote_average, poster_path, release_date, original_language }
