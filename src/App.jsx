@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import heroImage from './assets/hero.jpg';
 import Search from "./components/Search.jsx";
 import MovieCard from "./components/MovieCard.jsx";
+import {useDebounce} from "react-use";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -113,6 +114,9 @@ const App = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [movieList, setMovieList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+
+    useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
 
     const fetchMovies = async (query = '') => {
         setIsLoading(true);
@@ -145,9 +149,16 @@ const App = () => {
         }
     }
 
+    /**
+     * calling api for each word can cause-
+     * api overload which might exhaust server resources,
+     * for too many api requests, application might break or gets stuck
+     * Solution: optimize search by **Input Debouncing**:
+     * (helps us delay api request until user stop typing for a predefined amount of time)
+     */
     useEffect(() => {
-        fetchMovies(searchTerm);
-    }, [searchTerm])
+        fetchMovies(debouncedSearchTerm);
+    }, [debouncedSearchTerm])
 
     return (
         <main>
