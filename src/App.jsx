@@ -114,12 +114,14 @@ const App = () => {
     const [movieList, setMovieList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchMovies = async () => {
+    const fetchMovies = async (query = '') => {
         setIsLoading(true);
         setErrorMessage("");
 
         try {
-            const endpoint = `${API_BASE_URL}/discover/movie`;
+            const endpoint = query
+                ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+                : `${API_BASE_URL}/discover/movie`;
             // fetch allows to make api request to get data
             const response = await fetch(endpoint, API_OPTIONS);
 
@@ -144,8 +146,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        fetchMovies();
-    }, [])
+        fetchMovies(searchTerm);
+    }, [searchTerm])
 
     return (
         <main>

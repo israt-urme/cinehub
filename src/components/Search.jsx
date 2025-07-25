@@ -11,7 +11,6 @@ const Search = ({searchTerm, setSearchTerm}) => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search movies here.."
             />
-            <h2>{searchTerm}</h2>
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import noPoster from "../assets/no-poster.png";
 
 /** A presentational component:
  * it doesn't handle any logic, accepting some props that pass into it and rendering them
@@ -17,7 +18,7 @@ const MovieCard = ({ movie:
                    }) => {
     return (
         <div className="movie-card">
-            <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : '/no-movie.png'} alt={title} />
+            <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : noPoster} alt={title} />
             <div className="mt-4">
                 <h3>{title}</h3>
 
