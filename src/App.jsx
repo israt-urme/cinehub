@@ -3,6 +3,7 @@ import heroImage from './assets/hero.jpg';
 import Search from "./components/Search.jsx";
 import MovieCard from "./components/MovieCard.jsx";
 import {useDebounce} from "react-use";
+import {updateSearchCount} from "./appwrite.js";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -141,6 +142,8 @@ const App = () => {
                 return;
             }
             setMovieList(data.results || []);
+
+            updateSearchCount();
         } catch (e) {
             console.log(`Error fetching movies ${e}`);
             setErrorMessage('Error fetching movies. Please try again later.');
@@ -155,6 +158,8 @@ const App = () => {
      * for too many api requests, application might break or gets stuck
      * Solution: optimize search by **Input Debouncing**:
      * (helps us delay api request until user stop typing for a predefined amount of time)
+     * some ADVANCED patterns for real world production level practices:
+     * Boost performance optimization, SEO, Caching
      */
     useEffect(() => {
         fetchMovies(debouncedSearchTerm);
