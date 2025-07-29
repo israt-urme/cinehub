@@ -192,6 +192,21 @@ const App = () => {
                     <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 </header>
 
+                {trendingMovies.length > 0 && (
+                    <section className="">
+                        <h2>Trending Movies</h2>
+                        <ul>
+                            {trendingMovies.map((movie, index) => (
+                                // dollar sign used because here movie is directly coming from database
+                                <li key={movie.$id}>
+                                    <p>{index+1}</p>
+                                    <img src={movie.poster_url} alt={movie.title} />
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
+
                 <section className="all-movies">
                     <h2>All Movies</h2>
                     {isLoading ? (
