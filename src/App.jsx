@@ -3,7 +3,7 @@ import heroImage from './assets/hero.jpg';
 import Search from "./components/Search.jsx";
 import MovieCard from "./components/MovieCard.jsx";
 import {useDebounce} from "react-use";
-import {updateSearchCount} from "./appwrite.js";
+import {getTrendingMovies, updateSearchCount} from "./appwrite.js";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -114,6 +114,7 @@ const App = () => {
     // to view error message in app browser
     const [errorMessage, setErrorMessage] = useState("");
     const [movieList, setMovieList] = useState([]);
+    const [trendingMovies, setTrendingMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
@@ -154,6 +155,15 @@ const App = () => {
         }
     }
 
+    const loadTrendingMovies = async () => {
+        try {
+            const movies = await getTrendingMovies();
+            setTrendingMovies(movies);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     /**
      * calling api for each word can cause-
      * api overload which might exhaust server resources,
@@ -166,6 +176,11 @@ const App = () => {
     useEffect(() => {
         fetchMovies(debouncedSearchTerm);
     }, [debouncedSearchTerm])
+
+    useEffect(() => {
+        // it will only call at start because no dependencies included
+        loadTrendingMovies()
+    }, [])
 
     return (
         <main>
