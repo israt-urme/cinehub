@@ -1,7 +1,8 @@
 @import "tailwindcss";
-
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+@plugin "tailwind-scrollbar";
 
 @theme {
   --color-primary: #030014;
@@ -113,7 +114,8 @@
     @apply mt-20;
 
     & ul {
-      @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full;
+      @apply flex flex-row overflow-x-auto gap-5 -mt-10 w-full
+      scrollbar-thin scrollbar-thumb-light-200/40 hover:scrollbar-thumb-light-200/70 scrollbar-track-transparent;
     }
 
     & ul li {
@@ -129,6 +131,8 @@
     }
   }
 }
+
+/* TODO: fix horizontal scrollbar for trending movies */
 
 @utility text-gradient {
   @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
