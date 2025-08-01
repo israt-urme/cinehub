@@ -132,8 +132,6 @@
   }
 }
 
-/* TODO: fix horizontal scrollbar for trending movies */
-
 @utility text-gradient {
   @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
 }
