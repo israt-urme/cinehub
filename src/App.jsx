@@ -4,6 +4,8 @@ import Search from "./components/Search.jsx";
 import MovieCard from "./components/MovieCard.jsx";
 import {useDebounce} from "react-use";
 import {getTrendingMovies, updateSearchCount} from "./appwrite.js";
+import {useTranslation} from "react-i18next";
+import LanguageSelector from "./components/LanguageSelector.jsx";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -117,6 +119,7 @@ const App = () => {
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+    const { t } = useTranslation();
 
     useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
 
@@ -186,6 +189,7 @@ const App = () => {
         <main>
             <div className="pattern"></div>
             <div className="wrapper">
+                <LanguageSelector />
                 <header>
                     <img src={heroImage} alt="Hero Banner" />
                     <h3 className="text-white text-3xl text-center">Find <span className="text-gradient">Movies</span> You'll Enjoy <br/> Without The Hassle</h3>
@@ -194,7 +198,7 @@ const App = () => {
 
                 {trendingMovies.length > 0 && (
                     <section className="trending">
-                        <h2>Trending Movies</h2>
+                        <h2>{t("trending")}</h2>
                         <ul>
                             {trendingMovies.map((movie, index) => (
                                 // dollar sign used because here movie is directly coming from database

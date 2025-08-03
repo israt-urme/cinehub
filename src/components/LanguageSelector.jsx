@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from "react-i18next";
 
 const languages = [
     {code: "en", lang: "English"},
@@ -6,17 +7,19 @@ const languages = [
 ]
 
 const LanguageSelector = () => {
-    const [selectedLanguage, setSelectedLanguage] = React.useState(languages[0]);
+    const {i18n} = useTranslation();
 
-    const changeLanguage = (languageCode) => {
-        setSelectedLanguage(languageCode);
+    const selectLanguage = (languageCode) => {
+        i18n.changeLanguage(languageCode);
     }
 
     return <div className="flex justify-end text-center text-white">
         <select
-            value={selectedLanguage}
-            onChange={(e) => changeLanguage(e.target.value)}
+            // Sometimes, i18n.language could include a region (like en-US), to normalize use split
+            value={i18n.language.split('-')[0]}
+            onChange={(e) => selectLanguage(e.target.value)}
             className="bg-gray-800 border border-gray-600 text-white text-sm rounded-lg block p-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Select language"
         >
             {
                 languages.map(lng => (
