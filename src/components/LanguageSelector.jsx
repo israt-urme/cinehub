@@ -11,6 +11,8 @@ const LanguageSelector = () => {
 
     const selectLanguage = (languageCode) => {
         i18n.changeLanguage(languageCode);
+        // persist language: save data in a way that it remains available even after the app or browser is closed or refreshed
+        localStorage.setItem('i18nextLng', languageCode);
     }
 
     return <div className="flex justify-end text-center text-white">
