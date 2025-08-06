@@ -6,6 +6,8 @@ import {useDebounce} from "react-use";
 import {getTrendingMovies, updateSearchCount} from "./appwrite.js";
 import {useTranslation} from "react-i18next";
 import LanguageSelector from "./components/LanguageSelector.jsx";
+import {Route, Routes} from "react-router-dom";
+import PageNotFound from "./components/PageNotFound.jsx";
 
 /** React state:
  * React rendering process relies on state and props to decide when and how to re-render a component
@@ -186,6 +188,9 @@ const App = () => {
     }, [])
 
     return (
+        <Routes>
+            {/* Home Route (your existing UI) */}
+            <Route path="/" element={
         <main>
             <div className="pattern"></div>
             <div className="wrapper">
@@ -234,6 +239,10 @@ const App = () => {
                 </section>
             </div>
         </main>
+            } />
+            {/* Catch-all 404 route */}
+            <Route path="*" element={<PageNotFound />} />
+        </Routes>
     )
 }
 
