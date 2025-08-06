@@ -1,12 +1,39 @@
-# React + Vite
+# 🎬 Cinehub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Cinehub** is a modern movie web application built with the latest technologies like **React.js (v19)**, **Vite**, **Tailwind CSS**, **Appwrite**, and **TMDB API**. The project includes **multi-language support (English & Swedish)** powered by **i18next**, and it features movie search, trending listings, and a responsive design.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+- ⚛️ **React.js 19** – Modern React features & optimizations
+- ⚡ **Vite** – Fast and lightweight development bundler
+- 🎨 **Tailwind CSS** – Utility-first CSS for clean and fast UI
+- 🧩 **Appwrite** – Backend as a service (authentication, DB, etc.)
+- 🎥 **TMDB API** – For movie data (titles, posters, ratings, etc.)
+- 🌐 **i18next** – Multi-language translation (🇸🇪 Swedish ↔ 🇺🇸 English)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🌟 Features
+
+- 🔥 **Trending Movies** – Discover what's hot right now
+- 🎞️ **All Movies View** – Browse entire movie catalog
+- 🔎 **Search Optimization** – A search feature includes input debouncing to improve performance and reduce unnecessary API calls
+- 🌍 **Language Toggle** – Switch between Swedish & English seamlessly
+- 📱 **Responsive Design** – Cooler interface with Mobile-friendly experience
+
+---
+
+## 📦 Setup & Installation
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/cinehub.git
+cd cinehub
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
